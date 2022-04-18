@@ -115,7 +115,7 @@
 
         if (selectedCharacter === character) {
             details.style.display = "none";
-            button.style.backgroundColor = "white";
+            button.style.removeProperty('background-color');
             selectedCharacter = null;
         }
         else {
@@ -124,7 +124,7 @@
                 oldDetails.style.display = "none";
             }
             if (oldButton) {
-                oldButton.style.backgroundColor = "white";
+                oldButton.style.removeProperty('background-color');
             }
 
             switch (character)

@@ -46,16 +46,8 @@
             display: none;
         }
 
-        .grid-item.luigi:hover {
-            background-color: green;
-        }
-
-        .grid-item.link:hover {
-            background-color: darkgreen;
-        }
-
-        .grid-item.clank:hover {
-            background-color: gray;
+        .grid-item:hover {
+            background-color: lightgray;
         }
     </style>
 </head>
@@ -67,18 +59,18 @@
         (Nintendo, Sony).</p>
 
     <div class="grid-container" id="characters">
-        <button class="grid-item luigi" onclick="select('luigi');">
+        <button id="luigi-button" class="grid-item luigi" onclick="select('luigi');">
             <h3 class="luigi">Luigi</h3>
             <img class="luigi"
                 src="images/MPSS_Luigi.webp"
                 alt="Luigi waving">
         </button>
-        <button class="grid-item link" onclick="select('link');">
+        <button id="link-button" class="grid-item link" onclick="select('link');">
             <h3 class="link">Link</h3>
             <img src="images/SSHD_Link_Artwork.webp"
                 alt="Link brandishing sword" class="link">
         </button>
-        <button class="grid-item clank" onclick="select('clank');">
+        <button id="clank-button" class="grid-item clank" onclick="select('clank');">
             <h3 class="clank">Clank</h3>
             <img src="images/A4O_Clank.webp"
                 alt="Clank" class="clank">
@@ -116,16 +108,39 @@
     var selectedCharacter = null;
     function select(character) {
         var details = document.getElementById(character + "-details");
+        var button = document.getElementById(character + "-button");
+        var oldDetails = document.getElementById(selectedCharacter + "-details");
+        var oldButton = document.getElementById(selectedCharacter + "-button");
+        var color;
+
         if (selectedCharacter === character) {
             details.style.display = "none";
+            button.style.backgroundColor = "white";
             selectedCharacter = null;
         }
         else {
             details.style.display = "block";
-            var oldDetails = document.getElementById(selectedCharacter + "-details");
             if (oldDetails) {
                 oldDetails.style.display = "none";
             }
+            if (oldButton) {
+                oldButton.style.backgroundColor = "white";
+            }
+
+            switch (character)
+            {
+                case 'luigi':
+                    color = "green";
+                    break;
+                case 'link':
+                    color = 'darkgreen';
+                    break;
+                case 'clank':
+                    color = 'gray';
+                    break;
+            }
+            button.style.backgroundColor = color;
+
             selectedCharacter = character;
         }
     }

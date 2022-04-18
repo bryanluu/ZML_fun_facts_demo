@@ -9,13 +9,53 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
         }
+        #characters {
+            display: grid;
+            grid-auto-flow: column;
+        }
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .grid-item > img {
+            height: 25vw;
+        }
+        button {
+            background-color: white;
+            border-radius: 5px;
+        }
+        .grid-item.luigi:hover {
+            background-color: green;
+        }
+        .grid-item.link:hover {
+            background-color: darkgreen;
+        }
+        .grid-item.clank:hover {
+            background-color: gray;
+        }
     </style>
 </head>
 
 <body>
 
     <h1>Fun Facts</h1>
-    <p>A website created by me as a demo for Zen Maker Lab.</p>
+    <p>A website created by me as a demo for Zen Maker Lab. All images are owned by their respective companies (Nintendo, Sony).</p>
+
+    <div class="grid-container" id="characters">
+        <button class="grid-item luigi">
+            <h3 class="luigi">Luigi</h3>
+            <img class="luigi" src="https://static.wikia.nocookie.net/nintendo/images/7/72/MPSS_Luigi.png/revision/latest/scale-to-width-down/386?cb=20211102010334&path-prefix=en" alt="Luigi waving">
+        </button>
+        <button class="grid-item link">
+            <h3 class="link">Link</h3>
+            <img src="https://static.wikia.nocookie.net/nintendo/images/5/56/SSHD_Link_Artwork.png/revision/latest?cb=20210815005805&path-prefix=en" alt="Link brandishing sword" class="link">
+        </button>
+        <button class="grid-item clank">
+            <h3 class="clank">Clank</h3>
+            <img src="https://static.wikia.nocookie.net/ratchet/images/0/05/A4O_Clank.png/revision/latest?cb=20121117222410&path-prefix=fi" alt="Clank" class="clank">
+        </button>
+    </div>
 
 </body>
 

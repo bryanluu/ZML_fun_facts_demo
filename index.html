@@ -9,37 +9,51 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
         }
+
         #characters {
             display: grid;
             grid-auto-flow: column;
         }
+
         .grid-item {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .grid-item > img {
+
+        .grid-item>img {
             height: 25vw;
         }
+
         button {
             background-color: white;
             border-radius: 5px;
         }
-        .luigi > h4 {
+
+        .luigi>h4 {
             color: green;
         }
-        .link > h4 {
+
+        .link>h4 {
             color: darkgreen;
         }
-        .clank > h4 {
+
+        .clank>h4 {
             color: gray;
         }
+
+        .info > div {
+            display: none;
+        }
+
         .grid-item.luigi:hover {
             background-color: green;
         }
+
         .grid-item.link:hover {
             background-color: darkgreen;
         }
+
         .grid-item.clank:hover {
             background-color: gray;
         }
@@ -49,20 +63,25 @@
 <body>
 
     <h1>Fun Facts</h1>
-    <p>A website created by me as a demo for Zen Maker Lab. All images are owned by their respective companies (Nintendo, Sony).</p>
+    <p>A website created by me as a demo for Zen Maker Lab. All images are owned by their respective companies
+        (Nintendo, Sony).</p>
 
     <div class="grid-container" id="characters">
-        <button class="grid-item luigi">
+        <button class="grid-item luigi" onclick="select('luigi');">
             <h3 class="luigi">Luigi</h3>
-            <img class="luigi" src="https://static.wikia.nocookie.net/nintendo/images/7/72/MPSS_Luigi.png/revision/latest/scale-to-width-down/386?cb=20211102010334&path-prefix=en" alt="Luigi waving">
+            <img class="luigi"
+                src="https://static.wikia.nocookie.net/nintendo/images/7/72/MPSS_Luigi.png/revision/latest/scale-to-width-down/386?cb=20211102010334&path-prefix=en"
+                alt="Luigi waving">
         </button>
-        <button class="grid-item link">
+        <button class="grid-item link" onclick="select('link');">
             <h3 class="link">Link</h3>
-            <img src="https://static.wikia.nocookie.net/nintendo/images/5/56/SSHD_Link_Artwork.png/revision/latest?cb=20210815005805&path-prefix=en" alt="Link brandishing sword" class="link">
+            <img src="https://static.wikia.nocookie.net/nintendo/images/5/56/SSHD_Link_Artwork.png/revision/latest?cb=20210815005805&path-prefix=en"
+                alt="Link brandishing sword" class="link">
         </button>
-        <button class="grid-item clank">
+        <button class="grid-item clank" onclick="select('clank');">
             <h3 class="clank">Clank</h3>
-            <img src="https://static.wikia.nocookie.net/ratchet/images/0/05/A4O_Clank.png/revision/latest?cb=20121117222410&path-prefix=fi" alt="Clank" class="clank">
+            <img src="https://static.wikia.nocookie.net/ratchet/images/0/05/A4O_Clank.png/revision/latest?cb=20121117222410&path-prefix=fi"
+                alt="Clank" class="clank">
         </button>
     </div>
 
@@ -92,7 +111,24 @@
             </ol>
         </div>
     </div>
-
 </body>
+<script>
+    var selectedCharacter = null;
+    function select(character) {
+        var details = document.getElementById(character + "-details");
+        if (selectedCharacter === character) {
+            details.style.display = "none";
+            selectedCharacter = null;
+        }
+        else {
+            details.style.display = "block";
+            var oldDetails = document.getElementById(selectedCharacter + "-details");
+            if (oldDetails) {
+                oldDetails.style.display = "none";
+            }
+            selectedCharacter = character;
+        }
+    }
+</script>
 
 </html>

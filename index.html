@@ -47,53 +47,60 @@
             color: gray;
         }
 
-        .info > div {
+        /* Buttons should have a different background when you hover over them */
+        button:hover {
+            background-color: lightgray;
+        }
+
+        /* Selected character buttons should have a specific color */
+        .luigi.selected {
+            background-color: green;
+        }
+
+        .link.selected {
+            background-color: darkgreen;
+        }
+
+        .clank.selected {
+            background-color: gray;
+        }
+
+        /* Invisible things should not be displayed */
+        .invisible {
             display: none;
         }
 
-        .grid-item:hover {
-            background-color: lightgray;
-        }
     </style>
     <script>
-        var selectedCharacter = null;
+        var previousCharacter = null; // stores the previous character selection
+
         function select(character) {
+            // get the selected character's details and button, as well as the old details and button
             var details = document.getElementById(character + "-details");
             var button = document.getElementById(character + "-button");
-            var oldDetails = document.getElementById(selectedCharacter + "-details");
-            var oldButton = document.getElementById(selectedCharacter + "-button");
-            var color;
+            var oldDetails = document.getElementById(previousCharacter + "-details");
+            var oldButton = document.getElementById(previousCharacter + "-button");
 
-            if (selectedCharacter === character) {
-                details.style.display = "none";
-                button.style.removeProperty('background-color');
-                selectedCharacter = null;
+            if (previousCharacter !== null)
+            {
+                // set the old details to invisible and the old button's selected status
+                oldDetails.classList.add("invisible");
+                oldButton.classList.remove("selected");
             }
-            else {
-                details.style.display = "block";
-                if (oldDetails) {
-                    oldDetails.style.display = "none";
-                }
-                if (oldButton) {
-                    oldButton.style.removeProperty('background-color');
-                }
-
-                switch (character)
-                {
-                    case 'luigi':
-                        color = 'green';
-                        break;
-                    case 'link':
-                        color = 'darkgreen';
-                        break;
-                    case 'clank':
-                        color = 'gray';
-                        break;
-                }
-                button.style.backgroundColor = color;
-
-                selectedCharacter = character;
+            
+            if (character !== previousCharacter) // if we selected a new character
+            {
+                // make the character's details visible and select its button
+                details.classList.remove("invisible");
+                button.classList.add("selected");
+                previousCharacter = character;
+            } else { // we selected the same character
+                previousCharacter = null;
             }
+
+            // update old data
+            oldDetails = details;
+            oldButton = button;
         }
     </script>
 </head>
@@ -124,7 +131,7 @@
     </div>
 
     <div class="info">
-        <div id="luigi-details" class="luigi">
+        <div id="luigi-details" class="luigi invisible">
             <h4>Luigi's favourite things</h4>
             <ol>
                 <li>Cooking spaghetti</li>
@@ -132,7 +139,7 @@
                 <li>Doing absolutely nothing</li>
             </ol>
         </div>
-        <div id="link-details" class="link">
+        <div id="link-details" class="link invisible">
             <h4>Link's favourite things</h4>
             <ol>
                 <li>Saving Zelda</li>
@@ -140,7 +147,7 @@
                 <li>Breaking jars</li>
             </ol>
         </div>
-        <div id="clank-details" class="clank">
+        <div id="clank-details" class="clank invisible">
             <h4>Clank's favourite things</h4>
             <ol>
                 <li>Solving puzzles</li>

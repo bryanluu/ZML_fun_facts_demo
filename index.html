@@ -52,6 +52,47 @@
             background-color: lightgray;
         }
     </style>
+    <script>
+        var selectedCharacter = null;
+        function select(character) {
+            var details = document.getElementById(character + "-details");
+            var button = document.getElementById(character + "-button");
+            var oldDetails = document.getElementById(selectedCharacter + "-details");
+            var oldButton = document.getElementById(selectedCharacter + "-button");
+            var color;
+
+            if (selectedCharacter === character) {
+                details.style.display = "none";
+                button.style.removeProperty('background-color');
+                selectedCharacter = null;
+            }
+            else {
+                details.style.display = "block";
+                if (oldDetails) {
+                    oldDetails.style.display = "none";
+                }
+                if (oldButton) {
+                    oldButton.style.removeProperty('background-color');
+                }
+
+                switch (character)
+                {
+                    case 'luigi':
+                        color = 'green';
+                        break;
+                    case 'link':
+                        color = 'darkgreen';
+                        break;
+                    case 'clank':
+                        color = 'gray';
+                        break;
+                }
+                button.style.backgroundColor = color;
+
+                selectedCharacter = character;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -106,46 +147,5 @@
         </div>
     </div>
 </body>
-<script>
-    var selectedCharacter = null;
-    function select(character) {
-        var details = document.getElementById(character + "-details");
-        var button = document.getElementById(character + "-button");
-        var oldDetails = document.getElementById(selectedCharacter + "-details");
-        var oldButton = document.getElementById(selectedCharacter + "-button");
-        var color;
-
-        if (selectedCharacter === character) {
-            details.style.display = "none";
-            button.style.removeProperty('background-color');
-            selectedCharacter = null;
-        }
-        else {
-            details.style.display = "block";
-            if (oldDetails) {
-                oldDetails.style.display = "none";
-            }
-            if (oldButton) {
-                oldButton.style.removeProperty('background-color');
-            }
-
-            switch (character)
-            {
-                case 'luigi':
-                    color = "green";
-                    break;
-                case 'link':
-                    color = 'darkgreen';
-                    break;
-                case 'clank':
-                    color = 'gray';
-                    break;
-            }
-            button.style.backgroundColor = color;
-
-            selectedCharacter = character;
-        }
-    }
-</script>
 
 </html>

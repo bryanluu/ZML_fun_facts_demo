@@ -88,14 +88,14 @@
                 oldButton.classList.remove("selected");
             }
             
-            if (character !== previousCharacter) // if we selected a new character
+            if (character === previousCharacter) // if we selected the same character
             {
+                previousCharacter = null;
+            } else { // we selected the new character
                 // make the character's details visible and select its button
                 details.classList.remove("invisible");
                 button.classList.add("selected");
                 previousCharacter = character;
-            } else { // we selected the same character
-                previousCharacter = null;
             }
 
             // update old data

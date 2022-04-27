@@ -72,14 +72,14 @@
 
     </style>
     <script>
-        var previousCharacter = null; // stores the previous character selection
+        let previousCharacter = null; // stores the previous character selection
 
         function select(character) {
             // get the selected character's details and button, as well as the old details and button
-            var details = document.getElementById(character + "-details");
-            var button = document.getElementById(character + "-button");
-            var oldDetails = document.getElementById(previousCharacter + "-details");
-            var oldButton = document.getElementById(previousCharacter + "-button");
+            let details = document.getElementById(character + "-details");
+            let button = document.getElementById(character + "-button");
+            let oldDetails = document.getElementById(previousCharacter + "-details");
+            let oldButton = document.getElementById(previousCharacter + "-button");
 
             if (previousCharacter !== null)
             {

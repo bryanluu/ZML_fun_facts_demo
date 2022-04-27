@@ -75,45 +75,61 @@
         }
     </style>
     <script>
+        let previousCharacter = null; // stores the previous character selection
+
         function select(character) {
             // get the selected character's details and button, as well as the old details and button
             let details = document.getElementById(character + "-details");
             let button = document.getElementById(character + "-button");
-            
-            // toggle the character's details visibility and selection status
-            details.classList.toggle("invisible");
-            button.classList.toggle("selected");
+            let oldDetails = document.getElementById(previousCharacter + "-details");
+            let oldButton = document.getElementById(previousCharacter + "-button");
+
+            if (previousCharacter !== null) {
+                // set the old details to invisible and the old button's selected status
+                oldDetails.classList.add("invisible");
+                oldButton.classList.remove("selected");
+            }
+
+            if (character === previousCharacter) // if we selected the same character
+            {
+                previousCharacter = null;
+            } else { // we selected the new character
+                // make the character's details visible and select its button
+                details.classList.remove("invisible");
+                button.classList.add("selected");
+                previousCharacter = character;
+            }
+
+            // update old data
+            oldDetails = details;
+            oldButton = button;
         }
     </script>
 </head>
 
 <body>
 
-    <h1>Fun Facts (Simple Demo)</h1>
+    <h1>Fun Facts (Advanced Demo)</h1>
     <p>A website created by me as a demo for Zen Maker Lab. All images are owned by their respective companies
         (Nintendo, Sony).</p>
 
     <div class="grid-container" id="characters">
         <button id="luigi-button" class="grid-item luigi" onclick="select('luigi');">
             <h3 class="luigi">Luigi</h3>
-            <img class="luigi"
-                src="images/MPSS_Luigi.webp"
-                alt="Luigi waving">
+            <img class="luigi" src="images/MPSS_Luigi.webp" alt="Luigi waving">
         </button>
         <button id="link-button" class="grid-item link" onclick="select('link');">
             <h3 class="link">Link</h3>
-            <img src="images/SSHD_Link_Artwork.webp"
-                alt="Link brandishing sword" class="link">
+            <img src="images/SSHD_Link_Artwork.webp" alt="Link brandishing sword" class="link">
         </button>
         <button id="clank-button" class="grid-item clank" onclick="select('clank');">
             <h3 class="clank">Clank</h3>
-            <img src="images/A4O_Clank.webp"
-                alt="Clank" class="clank">
+            <img src="images/A4O_Clank.webp" alt="Clank" class="clank">
         </button>
     </div>
 
     <div class="navigation">
-        <a href="advanced.html"><button>Go to Advanced Demo</button></a>
+        <a href="index.html"><button>Go to Simple Demo</button></a>
     </div>
 
     <div class="info">
